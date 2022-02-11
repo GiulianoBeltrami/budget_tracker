@@ -17,6 +17,10 @@ type IChartData = {
     datasets: IChartDataset[];
 }
 
+type ITitle = {
+    title: string;
+}
+
 const chartData: IChartData = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -45,16 +49,16 @@ const chartData: IChartData = {
 };
 
 
-const Details: Function = (): JSX.Element => {
+const Details: Function = ({ title }: ITitle): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.income}>
-            <CardHeader title="Income" />
+        <Card className={title === 'Income' ? classes.income : classes.expense}>
+            <CardHeader title={title} />
             <CardContent>
                 <Typography variant="h5">$50</Typography>
-                <Doughnut data={chartData} />
-            </CardContent>"
+                {/* <Doughnut data={chartData} /> */}
+            </CardContent>
         </Card>
     )
 }
